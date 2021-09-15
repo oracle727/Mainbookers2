@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+      <li>
+        <i class="fas fa-book-open"><%= link_to "Bookers", root_path %></i> 
+      </li>
+      <ul class="collapse navbar-collapse">
+     <% if user_signed_in? %>
+
+      <li class=signup>
+        <i class="fas fa-home"><%= link_to "Home", destroy_user_session_path, method: :delete %></i>
+      </li>
+
+      <li class=logout>
+        <i class="fas fa-sign-out-alt"><%= link_to "logout", destroy_user_session_path, method: :delete %></i>
+      </li>
+
+       <li class=user>
+      <i class="fas fa-users"><%= link_to 'Users', user_path(current_user.id) %></i>
+      </li>
+
+       <li class=Books>
+      <i class="fas fa-book-open"><%= link_to 'books', books_path(current_user.id) %></i>
+      </li>
+
+
+    <% else %>
+
+      <li calss=signup>
+        <i class="fas fa-user-plus"><%= link_to "sign up", new_user_registration_path %></i>
+      </li>
+
+      <li class=login>
+        <i class="fas fa-sign-in-alt"><%= link_to "login", new_user_session_path %></i>
+      </li>
+
+
+      <li class=about>
+       <i class="fas fa-link"> <%= link_to "about", about_path %></i>
+      </li>
+
+
+
+   <% end %>
+   </ul>
+    </div>
+     </nav>
+    </header>
+
+
+    <%= yield %>
+
+<div class="container mt-5">
+  <div class="row">
+  <div class="mx-auto">
+  <footer>CopyRight Infratop.inc</footer>
+  </div>
+  </div>
+
+
+  </body>
+</html>
