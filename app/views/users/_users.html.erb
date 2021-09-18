@@ -1,5 +1,5 @@
 <h2>User info</h2>
-<%= attachment_image_tag user, :profile_image, :fill, 60, 60 %>
+<%= attachment_image_tag user, :profile_image, :fill, 60, 60,fallback:"no_image.jpg" %>
 <table class="table">
   <tbody>
     <tr>
@@ -19,6 +19,13 @@
   <% end %>
 
 <h1>New book</h1>
+<% if user.errors.any? %>
+  <%= user.errors.count %>件のエラーが発生しました
+  <% user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= form_with model: book, local:true do |f| %>
   <h4>title</h4>
   <%= f.text_field :title %>

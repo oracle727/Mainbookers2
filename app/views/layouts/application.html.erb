@@ -12,10 +12,11 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <main>
         <div class="container">
 
       <li>
-        <i class="fas fa-book-open"><%= link_to "Bookers", root_path %></i> 
+        <i class="fas fa-book-open"><%= link_to "Bookers", root_path %></i>
       </li>
       <ul class="collapse navbar-collapse">
      <% if user_signed_in? %>
@@ -33,7 +34,7 @@
       </li>
 
        <li class=Books>
-      <i class="fas fa-book-open"><%= link_to 'books', books_path(current_user.id) %></i>
+      <i class="fas fa-book-open"><%= link_to 'books', books_path %></i>
       </li>
 
 
@@ -55,10 +56,13 @@
 
 
    <% end %>
-   </ul>
+    </ul>
     </div>
-     </nav>
+    </nav>
     </header>
+    </main>
+
+
 
 
     <%= yield %>

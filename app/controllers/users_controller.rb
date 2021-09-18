@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @book = Book.new
   end
 
   def index
@@ -15,24 +16,37 @@ class UsersController < ApplicationController
     redirect_to user_params_id
    end
 
-  def edit
+   def edit
       @user = User.find(params[:id])
+       if @user != current_user
+    redirect_to users_path(current_user)
+       end
       @user.save
       if @user != current_user
-        redirect_to user_path(current_user)
-
+      redirect_to user_path(current_user)
       end
-  end
+   end
 
   def update
       @user= User.find(params[:id])
-      @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      if @user.update(user_params)
       redirect_to user_path (@user)
+      else
+      redirect_to users_path
+      end
+
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
 
    private
     def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image_id)
+    params.require(:user).permit(:name, :introduction, :profile_image)
     end
 end
