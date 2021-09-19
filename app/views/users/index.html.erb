@@ -1,37 +1,41 @@
 <main>
-<div class= "container px-5b px-sm-0">
-  <div class="row">
-    <div class="col-md-3">
- <%= render "users",user: @user, book: @book %>
-  </div>
- </div>
+<%= flash[:notice] %>
+
+<div class="container px-5 px-sm-0">
+
+<div class= "row">
+
+<div class="col-md-3">
+  <%= render "users/users",user: @user, book: @book %>
 </div>
 
 <div class= "col-md-8 offset-md-1">
 <h2>Users</h2>
 <table class= "table table-hover table-inverse">
-  <table class="table">
- <thead>
+  <thead>
     <tr>
-      <th></th>
     <th>image</th>
     <th>name</th>
     <th colspan="3"></th>
     </tr>
   </thead>
 
-
   <tbody>
     <tr>
-      <% @books.each do |book| %>
-     <td> <%= attachment_image_tag @book.user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "no_image.jpg" %></td>
-       <td><%= book.title  %></td>
-      <td><%=link_to"show",user_path %></td>
+      <% @users.each do |user| %>
+      <%= link_to user_path(@user) do %>
+      <td> <%=  attachment_image_tag @user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+      <% end %>
+      </td>
+      <td><%= user.name %></td>
+      <td><%= link_to "show", user_path(user) %></td>
     </tr>
        <% end %>
+  </tbody>
 
+</table>
 
-       </tbody>
-        </table>
-           </div>
-           </main>
+</div>
+</div>
+</div>
+</main>
