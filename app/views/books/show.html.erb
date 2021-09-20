@@ -2,7 +2,7 @@
 <div class= "container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-      <%= render "/users/users",user: @user, book: @book %>
+      <%= render "/users/users",user: @user, book: @newbook %>
     </div>
 
 <div class = "col-md-8 offset-md-1">
@@ -17,9 +17,16 @@
 　　　　<%= @book.user.name %>
         <% end %>
         </td>
-        <td><%= @book.title %></td>
+
+        <td><%= link_to book_path(@book.id) do %>
+        <%= @book.title %><% end %>
+
+        </td>
         <td><%= @book.body %></td>
-        <td> <%= link_to "edit", edit_book_path %> </td>
+        <td> <% if @book.user == current_user %>
+        <%= link_to "Edit", edit_book_path(@book) %>
+        <% end %>
+        </td>
         <td> <% if @book.user == current_user %>
             <%= link_to "Destroy", book_path, method: :delete, data:{ confirm: '本当に消しますか？' } %>
             <% end %>
