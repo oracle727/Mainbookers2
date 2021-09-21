@@ -13,15 +13,16 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <main>
-
         <div class="container">
 
+        
       <li>
-        <i class="fas fa-book-open"><%= link_to "Bookers", root_path %></i>
+        <i class="fas fa-book-open"><strong><%= link_to "Bookers", root_path %></strong></i>
       </li>
-      <ul class="collapse navbar-collapse">
-     <% if user_signed_in? %>
+      
+      <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
+      <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
 
       <li class=Home>
         <i class="fas fa-home"><%= link_to "Home",user_path(@user.id) %></i>
@@ -46,7 +47,7 @@
       </li>
 
       <li class=about>
-       <i class="fas fa-link"> <%= link_to "about", home_about_path %></i>
+        <i class="fas fa-link"> <%= link_to "about", home_about_path %></i>
       </li>
 
 
@@ -63,7 +64,6 @@
     </div>
     </nav>
     </header>
-    </main>
     <%= notice %>
     <%= yield %>
 
@@ -73,6 +73,5 @@
   <footer>CopyRight Infratop.inc</footer>
   </div>
   </div>
-
   </body>
 </html>
