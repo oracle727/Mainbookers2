@@ -15,17 +15,17 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
 
-        
+
       <li>
         <i class="fas fa-book-open"><strong><%= link_to "Bookers", root_path %></strong></i>
       </li>
-      
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown"></div>
       <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
 
       <li class=Home>
-        <i class="fas fa-home"><%= link_to "Home",user_path(@user.id) %></i>
+        <i class="fas fa-home"><%= link_to "Home",user_path(current_user.id) %></i>
       </li>
 
      <li class=user>

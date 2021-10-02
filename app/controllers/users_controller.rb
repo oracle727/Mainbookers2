@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books
+    @users = User.where.not(id: current_user.id)
   end
 
   def index
@@ -11,8 +12,18 @@ class UsersController < ApplicationController
     @books = Book.all
     @book = Book.new
     @users = User.all
+    # @users = User.where.not(id: current_user.id)
+  end
 
+  # 応用課題４で追加
+  def follows
+    user=User.find(params[:id])
+    @users=user.follows
+  end
 
+  def followers
+    user=User.find(params[:id])
+    @users=user.followers
   end
 
   def create
