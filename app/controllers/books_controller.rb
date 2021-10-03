@@ -22,7 +22,6 @@ class BooksController < ApplicationController
     @user = current_user
     @books = Book.all
     @book = Book.new
-   
   end
 
   def show
@@ -40,7 +39,6 @@ class BooksController < ApplicationController
     if @user != @book.user
       redirect_to books_path
     end
-
   end
 
   def update
