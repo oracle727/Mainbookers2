@@ -3,10 +3,11 @@ class SearchesController < ApplicationController
 
   def search
     @range = params[:range]
+    # 検索モデル
+    @word = params[:word]
 
-    if @range == "User"
+    if @range == "user"
       @users = User.looks(params[:search], params[:word])
-
     else
       @books = Book.looks(params[:search], params[:word])
     end
