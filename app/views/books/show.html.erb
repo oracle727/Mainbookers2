@@ -41,26 +41,17 @@
   <div class = "col-md-8 offset-md-1">
     <table class="table">
       <tbody>
-      <tr>
-        <% @book.book_comments.each do |book_comment| %>
-        <td><p> <%= attachment_image_tag @myuser, :profile_image, :fill, 60, 60,fallback:"no_image.jpg" %></p></td>
-        <td><%= book_comment.user.name %></td>
-　　　　<td><%= book_comment.comment %></td>
-         <% if book_comment.user == current_user %>
-         <td><button type="button" class="btn btn-danger"><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete %></button> </td>
-      </tr>
-        <% end %>
-        <% end %>
+         <td class= "book_comment">
+　　　    <%= render "book_comments/book_comment", book: @book %>
+        </td>
         </tbody>
         </table>
   </div>
       <div>
-     <td class=<%= "book_comment_"+ book.id.to_s %>>
-　　　<%= render "book_comments/book_comment", book: @book, book_comment: @book_comment %>
+     <td><%= form_with(model: [@book,@book_comment], remote: true) do |f| %>
+        <%= f.text_area :comment, placeholder: "コメントをここに", class: "col-8" %>
+        <%= f.submit "送信する" %>
+      <% end %>
 　　　</td>
       </div>
-      <div>
-
-　　　</div>
 　</div>
-
